@@ -1,10 +1,8 @@
 package com.harshalproject.jpa.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -13,11 +11,12 @@ import java.util.List;
 @Data
 @Entity
 @AllArgsConstructor
-@Builder
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
 //@Table(
 //        name = "AUTHOR_TBL"
 //)
-public class Author {
+public class Author extends  BaseEntity{
     @Id
     @GeneratedValue
             /*(

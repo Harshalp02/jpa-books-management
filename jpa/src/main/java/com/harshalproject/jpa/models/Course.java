@@ -1,10 +1,8 @@
 package com.harshalproject.jpa.models;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -12,8 +10,9 @@ import java.util.List;
 @Data
 @Entity
 @AllArgsConstructor
-@Builder
-public class Course {
+@SuperBuilder
+@EqualsAndHashCode(callSuper = true)
+public class Course extends  BaseEntity{
     @Id
     @GeneratedValue
     private Integer id;
@@ -21,7 +20,7 @@ public class Course {
     private String description;
     @ManyToMany
     @JoinTable(
-            name = "authors_course",
+            name = "authors_courses",
             joinColumns = {
                     @JoinColumn(
                             name = "course_id"
@@ -34,4 +33,6 @@ public class Course {
             }
     )
     private List<Author> authors;
+    @OneToMany(mappedBy = "course")
+    private List<Section> sections;
 }
