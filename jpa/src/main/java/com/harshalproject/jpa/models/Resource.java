@@ -5,12 +5,18 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
 @NoArgsConstructor
 @Data
 @Entity
 @AllArgsConstructor
-@Builder
+@SuperBuilder
+@Inheritance(strategy = InheritanceType.JOINED)
+//@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+//@DiscriminatorColumn(
+//        name = "resource_type"
+//) //ony with SINGLE_TABLE
 public class Resource {
     @Id
     @GeneratedValue
